@@ -1,0 +1,52 @@
+/*Premiere tache*/
+ALGORITHM CountWordsAndVowels
+VAR
+    phrase: STRING
+    wordCount, vowelCount, i: INTEGER
+BEGIN
+    READ phrase
+    wordCount ← 0
+    vowelCount ← 0
+
+    FOR i FROM 1 TO LENGTH(phrase) - 1 DO
+        IF IS_LETTER(phrase[i]) THEN
+            IF IS_VOWEL(phrase[i]) THEN
+                INCREMENT vowelCount
+            END IF
+        ELSE IF IS_SPACE(phrase[i]) THEN
+            INCREMENT wordCount
+        END IF
+    END FOR
+
+    DISPLAY "Number of words in the phrase:", wordCount + 1
+    DISPLAY "Number of vowels in the phrase:", vowelCount
+END
+
+/*Deuxieme tache*/
+ALGORITHM SumDistinctElements
+VAR
+    set1, set2: ARRAY OF INTEGER
+    sumArray: ARRAY OF INTEGER
+    sum, element: INTEGER
+BEGIN
+    READ set1
+    READ set2
+    sumArray ← EMPTY ARRAY
+    sum ← 0
+
+    FOR EACH element IN set1 DO
+        IF NOT_CONTAINED_IN(element, sumArray) THEN
+            ADD element TO sumArray
+            INCREMENT sum BY element
+        END IF
+    END FOR
+
+    FOR EACH element IN set2 DO
+        IF NOT_CONTAINED_IN(element, sumArray) THEN
+            ADD element TO sumArray
+            INCREMENT sum BY element
+        END IF
+    END FOR
+
+    DISPLAY "Sum of distinct elements:", sum
+END

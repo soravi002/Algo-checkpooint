@@ -1,26 +1,27 @@
 /*Premiere tache*/
 ALGORITHM CountWordsAndVowels
 VAR
-    phrase: STRING
-    wordCount, vowelCount, i: INTEGER
+    phrase: STRING;
+    wordCount, vowelCount, i: INTEGER;
 BEGIN
-    READ phrase
-    wordCount ← 0
-    vowelCount ← 0
-
+    READ phrase;
+    wordCount ← 0;
+    vowelCount ← 0;
+    
     FOR i FROM 1 TO LENGTH(phrase) - 1 DO
-        IF IS_LETTER(phrase[i]) THEN
-            IF IS_VOWEL(phrase[i]) THEN
-                INCREMENT vowelCount
-            END IF
-        ELSE IF IS_SPACE(phrase[i]) THEN
-            INCREMENT wordCount
+        IF IS_LETTER((phrase[i] === "a") OR (phrase[i] === "o") OR (phrase[i] === "i") OR (phrase[i] === "e") OR (phrase[i] === "u") OR (phrase[i] === "y"))  THEN
+            vowelCount =  vowelCount +1
+        END IF
+        IF (phrase[i] === " ") THEN
+            wordCount = wordCount + 1
         END IF
     END FOR
 
     DISPLAY "Number of words in the phrase:", wordCount + 1
-    DISPLAY "Number of vowels in the phrase:", vowelCount
+    DISPLAY "Number of vowels in the phrase:", vowelCount + 1
 END
+
+
 
 /*Deuxieme tache*/
 ALGORITHM SumDistinctElements
@@ -29,20 +30,22 @@ VAR
     sumArray: ARRAY OF INTEGER
     sum, element: INTEGER
 BEGIN
+    set1 := [3,1,7,9]
+    set2 := [2,4,1,9,3]
     READ set1
     READ set2
     sumArray ← EMPTY ARRAY
     sum ← 0
 
     FOR EACH element IN set1 DO
-        IF NOT_CONTAINED_IN(element, sumArray) THEN
+        IF NOT_CONTAINED_IN(set2, sumArray) THEN
             ADD element TO sumArray
             INCREMENT sum BY element
         END IF
     END FOR
 
     FOR EACH element IN set2 DO
-        IF NOT_CONTAINED_IN(element, sumArray) THEN
+        IF NOT_CONTAINED_IN(set1, sumArray) THEN
             ADD element TO sumArray
             INCREMENT sum BY element
         END IF
